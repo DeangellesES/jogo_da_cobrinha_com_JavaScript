@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Jogo da cobrinha</title>
+	</head>
+	<body>
+
+		<canvas id="stage" width="600" height="600"></canvas>
+		<script type="text/javascript">
+			
+
+			window.onload = function() {
+				var stage = document.getElementById('stage');
+				var ctx = stage.getContext("2d");
+				document.addEventListener("keydown", keyPush);
+				setInterval(game, 80);
+
+
+				const velocidadeCasa = 1;
+
+				var velocidadex = velocidadey = 0;
+				var pontoInicialx = 10;
+				var pontoInicialy = 15;
+				var tamanhoPeca = 30;
+				var quantidadePeca = 20;
+				var macaInicialx = macaInicialy =15;
+
+				var rastro = [];
+				tamanhoCalda = 5;
+
+				function game() {
+					pontoInicialx += velocidadex;
+					pontoInicialy += velocidadey;
+					if (pontoInicialx <0) {
+						pontoInicialx = quantidadePeca-1;
+					}
+					if (pontoInicialx > quantidadePeca - 1 ) {
+						pontoInicialx = 0;
+					}
+					if (pontoInicialy < 0) {
+						pontoInicialy = quantidadePeca-1;
+					}
+					if (pontoInicialy > quantidadePeca-1) {
+						pontoInicialy = 0;
+					}
+				
+				ctx.fillStyle = "black";
+				ctx.fillRect(0,0, stage.width, stage.height);
+
+				ctx.fillStyle = "red";
+				ctx.fillRect(macaInicialx*tamanhoPeca, macaInicialy*tamanhoPeca, tamanhoPeca,tamanhoPeca);
+
+				ctx.fillStyle = "gray";
+				for (var i = 0; i <rastro.length; i++) {
+					ctx.fillRect(rastro[i].x*tamanhoPeca, rastro[i].y*tamanhoPeca ,tamanhoPeca-1, tamanhoPeca-1);
+					if (rastro[i].x == pontoInicialx && rastro[i].y == pontoInicialy){
+						velocidadex = vy=0;
+						tamanhoCalda =5;
+					}
+				}
+
+				rastro.push({x:pontoInicialx, y:pontoInicialy})
+				while(rastro.length> tamanhoCalda){
+					rastro.shift();
+				}
+				if (macaInicialx==pontoInicialx && macaInicialy==pontoInicialy){
+					tamanhoCalda++;
+					macaInicialx = Math.floor(Math.random()*quantidadePeca);
+					macaInicialy = Math.floor(Math.random()*quantidadePeca);
+				}
+			}
+
+			function keyPush(event){
+				switch(event.keyCode) {
+					case 37: //left
+						velocidadex = -velocidadeCasa;
+						velocidadey = 0;
+						break;
+					case 38: //up
+						velocidadex = 0;
+						velocidadey = -velocidadeCasa;	
+						break;
+					case 39: //right
+						velocidadex = velocidadeCasa;
+						velocidadey = 0;
+						break;
+					case 40: //down
+						velocidadex = 0;
+						velocidadey = velocidadeCasa;
+						break;
+					default:
+
+						break;
+				}
+			}
+		}
+
+		</script>
+	</body>
+</html>
