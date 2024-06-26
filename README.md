@@ -14,4 +14,10 @@ Jogo criado para praticar JavaScript
 * HTML
 * CSS -->
 
-![Game](https://github.com/DeangellesES/jogo_da_cobrinha_com_JavaScript/blob/main/jogoDaCobrinha.png)
+
+
+https://github.com/DeangellesES/jogo_da_cobrinha_com_JavaScript/assets/64863113/5a3e0327-85dd-4f16-a649-db9e2d9886fb
+
+
+
+<!--![Game](https://github.com/DeangellesES/jogo_da_cobrinha_com_JavaScript/blob/main/jogoDaCobrinha.png)-->
